@@ -23,7 +23,7 @@ public class login extends javax.swing.JFrame {
 
     /** Creates new form login */
     
-    private String user;
+    public static String user;
     public login() {
         initComponents();
     }
@@ -101,6 +101,11 @@ public class login extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         panel2.add(jButton1);
         jButton1.setBounds(390, 160, 90, 30);
 
@@ -144,44 +149,50 @@ public class login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Connection connection;   
-        PreparedStatement ps;      
-        try {       
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/toko?zeroDate TimeBehavior=convertToNull", "root", "");
-            ps = connection.prepareStatement("SELECT * FROM `tb_akun` WHERE `username` = ? AND `password` = ?");  
-            ps.setString(1, txtNama.getText());       
-            ps.setString(2, txtPass.getText());       
-            ResultSet result =ps.executeQuery();    
-            if(result.next()){               
-                new home().show();              
-                user = txtNama.getText(); //perlu deklarasi user diclass utama. 
-                this.dispose();        
-            }           
-            else{       
-                JOptionPane.showMessageDialog(rootPane, "Salah!");
-                txtPass.setText(""); 
-                txtNama.requestFocus();       
+         Connection connection;
+        PreparedStatement ps;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/toko?zeroDateTimeBehavior=convertToNull", "root", "");
+            ps = connection.prepareStatement("SELECT * FROM `tb_akun` WHERE `username` = ? AND `password` = ?");
+            ps.setString(1, txtNama.getText());
+            ps.setString(2, txtPass.getText());
+            ResultSet result =ps.executeQuery();
+            if(result.next()){
+                new home().show();
+                user = txtNama.getText();//perlu deklarasi user diclass utama.
+                this.dispose();
             }
-        }catch (SQLException ex){  
-            JOptionPane.showMessageDialog(rootPane,"Gagal!");  
-        }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Salah!");
+                txtPass.setText("");
+                txtNama.requestFocus();
+            }
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(rootPane,"Gagal!");
+ // TODO add your handling code here:
+    } 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String username = txtNama.getText();
+      String username = txtNama.getText();
         String password = txtPass.getText();
         
         try {
             try(Statement statement = (Statement) login_koneksi.GetConnection().createStatement()) {
                 statement.executeUpdate("insert into tb_akun(username,password) VALUES ('"+username+"','"+password+"');");
             } 
-            JOptionPane.showMessageDialog(null,"Selamat! Anda berhasil Sign Up!");
+            JOptionPane.showMessageDialog(null,"Selamat!Anda berhasil Sign Up!");
         }
         catch (Exception t) {
             JOptionPane.showMessageDialog(null,"Mohon Maaf, Ulangi lagi prosedurnya!");
-        }
+        }   
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(1);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

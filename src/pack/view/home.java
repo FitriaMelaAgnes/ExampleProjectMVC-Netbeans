@@ -43,9 +43,9 @@ public class home extends javax.swing.JFrame {
 
         panel1 = new java.awt.Panel();
         panel2 = new java.awt.Panel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        admin = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         panel3 = new java.awt.Panel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -66,8 +66,8 @@ public class home extends javax.swing.JFrame {
         btn_keluar = new javax.swing.JButton();
         panel6 = new java.awt.Panel();
         jLabel3 = new javax.swing.JLabel();
-        cbCari = new javax.swing.JComboBox<>();
         btn_Cari = new javax.swing.JButton();
+        CbCariKategori = new javax.swing.JComboBox<>();
         panel7 = new java.awt.Panel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
@@ -78,6 +78,11 @@ public class home extends javax.swing.JFrame {
         cbJenis = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         panel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -86,23 +91,24 @@ public class home extends javax.swing.JFrame {
         panel2.setBackground(new java.awt.Color(51, 51, 51));
         panel2.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Constantia", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Data Barang di Toko");
-        panel2.add(jLabel1);
-        jLabel1.setBounds(210, 50, 240, 30);
-
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        panel2.add(jLabel2);
-        jLabel2.setBounds(90, 10, 100, 30);
+        admin.setBackground(new java.awt.Color(255, 255, 255));
+        admin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        admin.setForeground(new java.awt.Color(255, 255, 255));
+        admin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        panel2.add(admin);
+        admin.setBounds(90, 10, 100, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Admin Toko");
         panel2.add(jLabel4);
         jLabel4.setBounds(10, 20, 80, 15);
+
+        jLabel1.setFont(new java.awt.Font("Cooper Black", 1, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("DATA BARANG");
+        panel2.add(jLabel1);
+        jLabel1.setBounds(210, 50, 230, 30);
 
         panel1.add(panel2);
         panel2.setBounds(10, 10, 630, 90);
@@ -138,12 +144,13 @@ public class home extends javax.swing.JFrame {
         panel3.add(jLabel9);
         jLabel9.setBounds(20, 180, 110, 15);
 
-        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan", "Minuman", " " }));
+        cbKategori.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan", "Minuman", "Alat Tulis", "Alamat Rumah Tangga", "Barang Lain" }));
         panel3.add(cbKategori);
         cbKategori.setBounds(20, 210, 250, 40);
 
         panel1.add(panel3);
-        panel3.setBounds(10, 110, 310, 280);
+        panel3.setBounds(10, 110, 310, 270);
 
         panel4.setBackground(new java.awt.Color(204, 204, 255));
         panel4.setLayout(null);
@@ -172,6 +179,9 @@ public class home extends javax.swing.JFrame {
         panel5.setBackground(new java.awt.Color(153, 153, 153));
         panel5.setLayout(null);
 
+        btn_simpan.setBackground(new java.awt.Color(0, 0, 0));
+        btn_simpan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_simpan.setForeground(new java.awt.Color(255, 255, 255));
         btn_simpan.setText("Simpan");
         btn_simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,8 +189,11 @@ public class home extends javax.swing.JFrame {
             }
         });
         panel5.add(btn_simpan);
-        btn_simpan.setBounds(30, 10, 80, 23);
+        btn_simpan.setBounds(30, 10, 90, 30);
 
+        btn_ubah.setBackground(new java.awt.Color(0, 0, 0));
+        btn_ubah.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_ubah.setForeground(new java.awt.Color(255, 255, 255));
         btn_ubah.setText("Ubah");
         btn_ubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,8 +201,11 @@ public class home extends javax.swing.JFrame {
             }
         });
         panel5.add(btn_ubah);
-        btn_ubah.setBounds(150, 10, 80, 23);
+        btn_ubah.setBounds(150, 10, 90, 30);
 
+        btn_bersihkan.setBackground(new java.awt.Color(0, 0, 0));
+        btn_bersihkan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_bersihkan.setForeground(new java.awt.Color(255, 255, 255));
         btn_bersihkan.setText("Bersihkan");
         btn_bersihkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,8 +213,11 @@ public class home extends javax.swing.JFrame {
             }
         });
         panel5.add(btn_bersihkan);
-        btn_bersihkan.setBounds(270, 10, 100, 23);
+        btn_bersihkan.setBounds(270, 10, 100, 30);
 
+        btn_hapus.setBackground(new java.awt.Color(0, 0, 0));
+        btn_hapus.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_hapus.setForeground(new java.awt.Color(255, 255, 255));
         btn_hapus.setText("Hapus");
         btn_hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,8 +225,11 @@ public class home extends javax.swing.JFrame {
             }
         });
         panel5.add(btn_hapus);
-        btn_hapus.setBounds(400, 10, 80, 23);
+        btn_hapus.setBounds(400, 10, 90, 30);
 
+        btn_keluar.setBackground(new java.awt.Color(0, 0, 0));
+        btn_keluar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_keluar.setForeground(new java.awt.Color(255, 255, 255));
         btn_keluar.setText("Keluar");
         btn_keluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,10 +237,10 @@ public class home extends javax.swing.JFrame {
             }
         });
         panel5.add(btn_keluar);
-        btn_keluar.setBounds(520, 10, 80, 23);
+        btn_keluar.setBounds(520, 10, 80, 30);
 
         panel1.add(panel5);
-        panel5.setBounds(10, 400, 630, 50);
+        panel5.setBounds(10, 390, 630, 50);
 
         panel6.setBackground(new java.awt.Color(153, 153, 153));
         panel6.setLayout(null);
@@ -228,10 +250,9 @@ public class home extends javax.swing.JFrame {
         panel6.add(jLabel3);
         jLabel3.setBounds(0, 10, 260, 20);
 
-        cbCari.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan", "Minuman", " " }));
-        panel6.add(cbCari);
-        cbCari.setBounds(280, 10, 190, 30);
-
+        btn_Cari.setBackground(new java.awt.Color(0, 0, 0));
+        btn_Cari.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_Cari.setForeground(new java.awt.Color(255, 255, 255));
         btn_Cari.setText("Cari");
         btn_Cari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,10 +260,20 @@ public class home extends javax.swing.JFrame {
             }
         });
         panel6.add(btn_Cari);
-        btn_Cari.setBounds(510, 10, 80, 23);
+        btn_Cari.setBounds(510, 10, 80, 30);
+
+        CbCariKategori.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CbCariKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan", "Minuman", "Alat Tulis", "Alat Rumah Tangga", "Barang Lain" }));
+        CbCariKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbCariKategoriActionPerformed(evt);
+            }
+        });
+        panel6.add(CbCariKategori);
+        CbCariKategori.setBounds(290, 10, 190, 30);
 
         panel1.add(panel6);
-        panel6.setBounds(10, 460, 630, 50);
+        panel6.setBounds(10, 450, 630, 50);
 
         panel7.setBackground(new java.awt.Color(0, 0, 0));
         panel7.setLayout(null);
@@ -266,6 +297,11 @@ public class home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDataMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblData);
         if (tblData.getColumnModel().getColumnCount() > 0) {
             tblData.getColumnModel().getColumn(0).setResizable(false);
@@ -276,10 +312,10 @@ public class home extends javax.swing.JFrame {
         }
 
         panel7.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 10, 610, 220);
+        jScrollPane1.setBounds(10, 10, 610, 130);
 
         panel1.add(panel7);
-        panel7.setBounds(10, 520, 630, 240);
+        panel7.setBounds(10, 510, 630, 150);
 
         panel8.setBackground(new java.awt.Color(204, 204, 204));
         panel8.setLayout(null);
@@ -298,23 +334,24 @@ public class home extends javax.swing.JFrame {
         panel8.add(jLabel11);
         jLabel11.setBounds(20, 100, 80, 15);
 
-        cbJenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pack", "Eceran", "Kardus", "Box", " " }));
+        cbJenis.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbJenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pack", "Pcs", " " }));
         panel8.add(cbJenis);
         cbJenis.setBounds(20, 40, 250, 40);
 
         panel1.add(panel8);
-        panel8.setBounds(330, 110, 310, 280);
+        panel8.setBounds(330, 110, 310, 270);
 
         getContentPane().add(panel1);
-        panel1.setBounds(0, 0, 650, 770);
+        panel1.setBounds(0, 0, 650, 680);
 
-        setSize(new java.awt.Dimension(665, 808));
+        setSize(new java.awt.Dimension(665, 706));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
         // TODO add your handling code here:
-        ctoko.SimpanData();
+       ctoko.SimpanData();
         ctoko.isiTable();
     }//GEN-LAST:event_btn_simpanActionPerformed
 
@@ -326,13 +363,13 @@ public class home extends javax.swing.JFrame {
     private void btn_ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ubahActionPerformed
         // TODO add your handling code here:
         ctoko.Ubah();
-        ctoko.isiTable();
+        ctoko.isiTable(); 
     }//GEN-LAST:event_btn_ubahActionPerformed
 
     private void btn_CariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CariActionPerformed
         // TODO add your handling code here:
         ctoko.CariKategori();
-        ctoko.isiTable();
+        ctoko.isiTableCariKategori();
     }//GEN-LAST:event_btn_CariActionPerformed
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
@@ -347,7 +384,31 @@ public class home extends javax.swing.JFrame {
 
     private void btn_keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_keluarActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btn_keluarActionPerformed
+
+    private void tblDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDataMouseClicked
+        // TODO add your handling code here:
+        int baris = tblData.getSelectedRow();
+        if (baris != -1)
+        {
+            txtKode.setText(tblData.getValueAt(baris, 0).toString());
+            txtNama.setText((String) tblData.getValueAt(baris, 1));
+            cbKategori.setSelectedItem(tblData.getValueAt(baris, 2).toString());
+            cbJenis.setSelectedItem(tblData.getValueAt(baris, 3).toString());
+            txtHarga.setText(tblData.getValueAt(baris, 4).toString());
+        }
+    }//GEN-LAST:event_tblDataMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        String user = login.user;
+        admin.setText(" "+user);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void CbCariKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbCariKategoriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbCariKategoriActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,20 +445,20 @@ public class home extends javax.swing.JFrame {
         });
     }    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CbCariKategori;
+    private javax.swing.JLabel admin;
     private javax.swing.JButton btn_Cari;
     private javax.swing.JButton btn_bersihkan;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JButton btn_keluar;
     private javax.swing.JButton btn_simpan;
     private javax.swing.JButton btn_ubah;
-    private javax.swing.JComboBox<String> cbCari;
     private javax.swing.JComboBox<String> cbJenis;
     private javax.swing.JComboBox<String> cbKategori;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -436,7 +497,7 @@ public class home extends javax.swing.JFrame {
         return cbJenis;
     }
     public JComboBox getCbCariKategori(){
-        return cbCari;
+        return CbCariKategori;
     }
     public JButton getButtonHapus(){
         return btn_hapus;
@@ -456,6 +517,9 @@ public class home extends javax.swing.JFrame {
     }
     public JTable getTableData(){
         return tblData;
+    }
+    public void setAdmin (String Admin) {
+        admin.setText(Admin);
     }
 
     }
